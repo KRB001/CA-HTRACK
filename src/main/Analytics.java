@@ -1,5 +1,6 @@
 package main;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,29 @@ public class Analytics {
 
         this.logs = logs;
         this.recs = recs;
+
+    }
+
+    /**
+     * Enters a log into the analytics object from a log object
+     * @param log the log to be entered
+     */
+    public void log(Log log){
+
+
+
+    }
+
+    /**
+     * Enters a log into the analytics object from raw log data
+     * @param type the type of the log being entered
+     * @param dateTime the date and time the log was made
+     * @param amount the amount of the log being entered
+     * @param allowanceAtTime the allowance at the time the log was entered
+     */
+    public void log(LogType type, LocalDateTime dateTime, double amount, double allowanceAtTime){
+
+
 
     }
 
