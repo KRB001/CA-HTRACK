@@ -6,7 +6,6 @@ import main.Analytics;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AnalyticsTest {

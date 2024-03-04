@@ -134,4 +134,33 @@ public class Account {
 
     }
 
+    /**
+     * Set the current account balance
+     * @param amount the amount to set the balance to
+     */
+    public void setBalance(double amount){
+
+
+
+    }
+
+    /**
+     * Set the allowance for the account
+     * @param amount the amount to set the allowance to
+     */
+    public void setAllowance(double amount){
+
+
+
+    }
+
+    /**
+     * Toggle whether or not rollover is allowed
+     */
+    public void toggleRollover(){
+
+
+
+    }
+
 }
