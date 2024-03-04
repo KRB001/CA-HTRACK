@@ -1,3 +1,5 @@
+package main;
+
 public class CASHTRACK {
 
     public static void main(String[] args) {

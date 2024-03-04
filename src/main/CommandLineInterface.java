@@ -1,3 +1,5 @@
+package main;
+
 /**
  * CLI for CA$HTRACK
  * @author Kieran Bentley

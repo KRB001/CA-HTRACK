@@ -1,3 +1,5 @@
+package main;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -103,7 +105,7 @@ public class Writer {
 
     /**
      * Read the data from the most recently stored analytics object
-     * @return A reinstantiated Analytics object built from most recent data
+     * @return A reinstantiated main.Analytics object built from most recent data
      */
     public Analytics readAnalytics(){
 

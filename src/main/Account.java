@@ -1,7 +1,9 @@
+package main;
+
 import java.time.LocalDateTime;
 
 /**
- * Account class for CA$HTRACK
+ * main.Account class for CA$HTRACK
  * Manages purchases and payments as well as allowances and rollovers
  * @author Kieran Bentley
  * @version 1.0
@@ -103,7 +105,7 @@ public class Account {
     }
 
     /**
-     * Log a purchase made by the user
+     * main.Log a purchase made by the user
      * @param amount the amount of the purchase in dollars
      * @return Did the purchase go through
      */
@@ -114,7 +116,7 @@ public class Account {
     }
 
     /**
-     * Log a payment made to the user
+     * main.Log a payment made to the user
      * @param amount the amount of the payment in dollars
      */
     public void addPayment(double amount) {
