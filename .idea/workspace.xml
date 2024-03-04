@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd9fd1e0-e567-4253-82fa-bc30d02d95c1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/WriterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/CASHTRACK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CASHTRACK.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AnalyticsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AnalyticsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Log.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +43,7 @@
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.LogTest">
     <configuration name="CASHTRACK" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.CASHTRACK" />
       <module name="CASHTRACK" />
@@ -61,8 +57,57 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LogTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CASHTRACK" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.LogTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogTest.getterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CASHTRACK" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.LogTest" />
+      <option name="METHOD_NAME" value="getterTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CASHTRACK" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.WriterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LogTest" />
+        <item itemvalue="JUnit.LogTest.getterTest" />
+        <item itemvalue="JUnit.WriterTest" />
         <item itemvalue="Application.CASHTRACK" />
       </list>
     </recent_temporary>
@@ -76,7 +121,7 @@
       <option name="presentableId" value="Default" />
       <updated>1709243142304</updated>
       <workItem from="1709243144143" duration="8895000" />
-      <workItem from="1709569269359" duration="7154000" />
+      <workItem from="1709569269359" duration="7240000" />
     </task>
     <servers />
   </component>

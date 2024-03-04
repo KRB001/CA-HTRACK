@@ -30,7 +30,7 @@ public class Log {
      */
     public LogType getType(){
 
-        return null;
+        return type;
 
     }
 
@@ -40,7 +40,7 @@ public class Log {
      */
     public double getAmount(){
 
-        return 0.0;
+        return amount;
 
     }
 
@@ -50,7 +50,7 @@ public class Log {
      */
     public double getAllowanceAtTime(){
 
-        return 0.0;
+        return allowanceAtTime;
 
     }
 
@@ -60,7 +60,7 @@ public class Log {
      */
     public LocalDateTime getDateTimeAtTime() {
 
-        return null;
+        return dateTimeAtTime;
 
     }
 }
