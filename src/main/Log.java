@@ -3,7 +3,7 @@ package main;
 import java.time.LocalDateTime;
 
 /**
- * main.Log data class for CA$HTRACK
+ * main Log data class for CA$HTRACK
  * @author Kieran Bentley
  * @version 1.0
  */
