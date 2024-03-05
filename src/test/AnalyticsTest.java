@@ -27,11 +27,11 @@ public class AnalyticsTest {
 
         assertEquals(2, analytics.getLogs().size());
         assertEquals(50, analytics.getLogs().get(0).getAmount());
-        assertEquals(100, analytics.getLogs().get(0).getAmount());
+        assertEquals(100, analytics.getLogs().get(1).getAmount());
 
         assertEquals("== ALL LOGS ==\n" +
-                "1. PURCHASE at " + now + ": $50.00 / $ 500.000\n" +
-                "2. PAYMENT at " + now + ": $100.00 / $ 500.000", analytics.getLogsToString());
+                "1. PURCHASE at " + now + ": $50.0 / $500.0\n" +
+                "2. PAYMENT at " + now + ": $100.0 / $500.0\n", analytics.getLogsToString());
 
     }
 

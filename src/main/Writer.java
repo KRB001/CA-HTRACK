@@ -54,6 +54,7 @@ public class Writer {
      * @param recs list of recs obtained from analytics
      */
     public void write(
+
             double balance,
             LocalDateTime prev,
             LocalDateTime next,
@@ -61,9 +62,33 @@ public class Writer {
             double allowance,
             ArrayList<Log> logs,
             ArrayList<String> recs
-    ) {
 
+    ) throws IOException {
 
+        FileWriter writer = new FileWriter(destination);
+
+        String startDate = String.valueOf(readStartDate());
+        int rolloverAllowedInt = 0;
+        if(rolloverAllowed) { rolloverAllowedInt = 1; }
+        String outputString = "" + startDate + "\n" +
+                balance + "\n" +
+                prev + "\n" +
+                next + "\n" +
+                rolloverAllowedInt + "\n" +
+                allowance + "\n" +
+                "-logs\n";
+        for(Log l : logs){
+            String tempLog = "" + l.getType() + "/" + l.getAmount() + "/" +
+                    l.getAllowanceAtTime() + "/" + l.getDateTimeAtTime();
+            outputString = outputString.concat("" + tempLog + "\n");
+        }
+        outputString = outputString.concat("-recs\n");
+        for(String r : recs){
+            outputString = outputString.concat("" + r + "\n");
+        }
+
+        writer.write(outputString);
+        writer.close();
 
     }
 
@@ -184,7 +209,7 @@ public class Writer {
 
                 amount = Double.parseDouble(currentSplit[1]);
                 allowance = Double.parseDouble(currentSplit[2]);
-                dateTime = LocalDateTime.parse(currentSplit[2], DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                dateTime = LocalDateTime.parse(currentSplit[3], DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
                 logs.add(new Log(type, amount, allowance, dateTime));
 

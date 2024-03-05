@@ -28,7 +28,7 @@ public class Analytics {
      */
     public void log(Log log){
 
-
+        logs.add(log);
 
     }
 
@@ -41,7 +41,7 @@ public class Analytics {
      */
     public void log(LogType type, LocalDateTime dateTime, double amount, double allowanceAtTime){
 
-
+        logs.add(new Log(type, amount, allowanceAtTime, dateTime));
 
     }
 
@@ -58,7 +58,7 @@ public class Analytics {
      */
     public ArrayList<Log> getLogs(){
 
-        return null;
+        return logs;
 
     }
 
@@ -68,7 +68,17 @@ public class Analytics {
      */
     public String getLogsToString(){
 
-        return "";
+        String logsString = "== ALL LOGS ==\n";
+        int index = 1;
+        for(Log l : logs){
+            logsString = logsString.concat(
+                    "" + index + ". " + l.getType() + " at "
+                            + l.getDateTimeAtTime() + ": $"
+                            + l.getAmount() + " / $" + l.getAllowanceAtTime() + "\n"
+            );
+            index++;
+        }
+        return logsString;
 
     }
 
@@ -77,8 +87,10 @@ public class Analytics {
      * @return Print-ready String report of financial activity
      */
     public String getReport(){
-
-        return "";
+        if (logs.size() == 0){
+            return "No transactions have been logged.";
+        }
+        return "PLACEHOLDER FOR REPORT";
 
     }
 
@@ -88,7 +100,10 @@ public class Analytics {
      */
     public String getRec(){
 
-        return "";
+        if (logs.size() == 0) {
+            return "No transactions have been logged.";
+        }
+        return "PLACEHOLDER FOR REC";
 
     }
 
@@ -98,7 +113,7 @@ public class Analytics {
      */
     public ArrayList<String> getRecs(){
 
-        return null;
+        return recs;
 
     }
 
