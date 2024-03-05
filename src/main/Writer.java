@@ -1,6 +1,8 @@
 package main;
 
+import java.io.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -12,10 +14,32 @@ import java.util.ArrayList;
 public class Writer {
 
     private String destination;
+    FileReader fileReader = null;
+    LineNumberReader lineNumberReader = null;
 
-    public Writer(String destination){
+
+    public Writer(String destination) throws FileNotFoundException{
 
         this.destination = destination;
+
+        try {
+            File file = new File(destination);
+            file.createNewFile();
+        }
+        catch (IOException e) {
+
+        }
+
+        try {
+            fileReader = new FileReader(destination);
+            lineNumberReader = new LineNumberReader(fileReader);
+            lineNumberReader.mark(5000);
+        }
+        catch (IOException f) {
+
+            throw new FileNotFoundException("There is no file at " + destination);
+
+        }
 
     }
 
@@ -47,9 +71,14 @@ public class Writer {
      * Read the user's balance at the last logout date
      * @return Last recorded user balance
      */
-    public double readBalance(){
+    public double readBalance() throws IOException{
 
-        return 0.0;
+        lineNumberReader.reset();
+        while(lineNumberReader.getLineNumber() < 1){
+            lineNumberReader.readLine();
+        }
+
+        return Double.parseDouble(lineNumberReader.readLine());
 
     }
 
@@ -57,9 +86,10 @@ public class Writer {
      * Read the date the user began tracking
      * @return Date and time user began tracking finances
      */
-    public LocalDateTime readStartDate(){
+    public LocalDateTime readStartDate() throws IOException{
 
-        return null;
+        lineNumberReader.reset();
+        return LocalDateTime.parse(lineNumberReader.readLine(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
     }
 
@@ -67,9 +97,14 @@ public class Writer {
      * Read the allowance the user most recently set for themselves
      * @return Current user allowance
      */
-    public double readAllowance(){
+    public double readAllowance() throws IOException{
 
-        return 0.0;
+        lineNumberReader.reset();
+        while(lineNumberReader.getLineNumber() < 5){
+            lineNumberReader.readLine();
+        }
+
+        return Double.parseDouble(lineNumberReader.readLine());
 
     }
 
@@ -77,9 +112,13 @@ public class Writer {
      * Read the date and time of the most recent rollover at the time of last logout
      * @return Most recent rollover date and time recorded
      */
-    public LocalDateTime readPreviousRollover(){
+    public LocalDateTime readPreviousRollover() throws IOException{
 
-        return null;
+        lineNumberReader.reset();
+        while(lineNumberReader.getLineNumber() < 2){
+            lineNumberReader.readLine();
+        }
+        return LocalDateTime.parse(lineNumberReader.readLine(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
     }
 
@@ -87,9 +126,13 @@ public class Writer {
      * Read the date and time of the next rollover at the time of last logout
      * @return Most recent upcoming rollover date and time recorded
      */
-    public LocalDateTime readNextRollover(){
+    public LocalDateTime readNextRollover() throws IOException{
 
-        return null;
+        lineNumberReader.reset();
+        while(lineNumberReader.getLineNumber() < 3){
+            lineNumberReader.readLine();
+        }
+        return LocalDateTime.parse(lineNumberReader.readLine(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
     }
 
@@ -97,19 +140,71 @@ public class Writer {
      * Read whether user has set cash rollover to be allowed
      * @return Has the user allowed cash rollover
      */
-    public boolean readIsRolloverAllowed(){
+    public boolean readIsRolloverAllowed() throws IOException{
 
-        return false;
+        lineNumberReader.reset();
+        while(lineNumberReader.getLineNumber() < 4){
+            lineNumberReader.readLine();
+        }
+        int isAllowedInt = Integer.parseInt(lineNumberReader.readLine());
+        return isAllowedInt == 1;
 
     }
 
     /**
      * Read the data from the most recently stored analytics object
-     * @return A reinstantiated main.Analytics object built from most recent data
+     * @return A reinstantiated Analytics object built from most recent data
      */
-    public Analytics readAnalytics(){
+    public Analytics readAnalytics() throws IOException{
 
-        return null;
+        lineNumberReader.reset();
+        while(lineNumberReader.getLineNumber() < 7){
+            lineNumberReader.readLine();
+        }
+
+        ArrayList<Log> logs = new ArrayList<>();
+        ArrayList<String> recs = new ArrayList<>();
+        String current = "";
+
+        while(!current.equals("-recs")){
+
+            current = lineNumberReader.readLine();
+            if(!current.equals("-recs")){
+
+                LogType type = null;
+                double amount = 0;
+                double allowance = 0;
+                LocalDateTime dateTime = null;
+
+                String[] currentSplit = current.split("/");
+                if(currentSplit[0].equals("PURCHASE")){
+                    type = LogType.PURCHASE;
+                }
+                else { type = LogType.PAYMENT; }
+
+                amount = Double.parseDouble(currentSplit[1]);
+                allowance = Double.parseDouble(currentSplit[2]);
+                dateTime = LocalDateTime.parse(currentSplit[2], DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+                logs.add(new Log(type, amount, allowance, dateTime));
+
+            }
+
+        }
+
+        while(current != null){
+
+            current = lineNumberReader.readLine();
+
+            if (current != null){
+
+                recs.add(current);
+
+            }
+
+        }
+
+        return new Analytics(logs, recs);
 
     }
 }
