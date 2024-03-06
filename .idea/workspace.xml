@@ -4,6 +4,8 @@
     <list default="true" id="fd9fd1e0-e567-4253-82fa-bc30d02d95c1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CASHTRACK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CASHTRACK.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CommandLineInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CommandLineInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,20 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.WriterTest.readAnalyticsTest">
+  <component name="RunManager" selected="Application.CASHTRACK">
+    <configuration name="CASHTRACK" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.CASHTRACK" />
+      <module name="CASHTRACK" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AnalyticsTest.logTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CASHTRACK" />
       <extension name="coverage">
@@ -72,21 +87,6 @@
       <option name="MAIN_CLASS_NAME" value="test.AnalyticsTest" />
       <option name="METHOD_NAME" value="reportTest" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CASHTRACK" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.WriterTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -125,11 +125,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CASHTRACK" />
         <item itemvalue="JUnit.WriterTest.readAnalyticsTest" />
         <item itemvalue="JUnit.AnalyticsTest.reportTest" />
         <item itemvalue="JUnit.AnalyticsTest.logTest" />
         <item itemvalue="JUnit.WriterTest.readTest" />
-        <item itemvalue="JUnit.WriterTest" />
       </list>
     </recent_temporary>
   </component>
@@ -146,7 +146,7 @@
       <workItem from="1709681618487" duration="908000" />
       <workItem from="1709689736129" duration="3576000" />
       <workItem from="1709693859416" duration="11000" />
-      <workItem from="1709694468587" duration="926000" />
+      <workItem from="1709694468587" duration="5414000" />
     </task>
     <servers />
   </component>

@@ -33,6 +33,8 @@ public class Account {
         rolloverAllowed = writer.readIsRolloverAllowed();
         analytics = writer.readAnalytics();
 
+        update();
+
     }
 
     /**
@@ -150,13 +152,13 @@ public class Account {
     public void update(){
 
         if(LocalDateTime.now().isAfter(nextRollover)){
-            double delta = LocalDateTime.now().toEpochSecond(ZoneOffset.ofHours(0)) - nextRollover.toEpochSecond(ZoneOffset.ofHours(0));
+            double delta = LocalDateTime.now().toEpochSecond(ZoneOffset.ofHours(0)) - prevRollover.toEpochSecond(ZoneOffset.ofHours(0));
             int deltaWeeks = (int) delta / 604800;
             if(!rolloverAllowed){
                 balance = allowance;
             }
             else {
-                for (int ndx = 0; ndx < deltaWeeks; ) {
+                for (int ndx = 0; ndx < deltaWeeks; ndx++) {
                     balance += allowance;
                 }
             }
@@ -192,6 +194,20 @@ public class Account {
     public void toggleRollover(){
 
         rolloverAllowed = !rolloverAllowed;
+
+    }
+
+    public void save() throws IOException{
+
+        writer.write(
+                balance,
+                prevRollover,
+                nextRollover,
+                rolloverAllowed,
+                allowance,
+                analytics.getLogs(),
+                analytics.getRecs()
+        );
 
     }
 
