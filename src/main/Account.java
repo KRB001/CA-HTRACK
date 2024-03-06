@@ -1,6 +1,8 @@
 package main;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 /**
  * main.Account class for CA$HTRACK
@@ -20,7 +22,16 @@ public class Account {
     private Analytics analytics;
     private Writer writer;
 
-    public Account(){
+    public Account() throws IOException {
+
+        writer = new Writer("src/main/cashtrack.txt");
+        startDate = writer.readStartDate();
+        balance = writer.readBalance();
+        allowance = writer.readAllowance();
+        prevRollover = writer.readPreviousRollover();
+        nextRollover = writer.readNextRollover();
+        rolloverAllowed = writer.readIsRolloverAllowed();
+        analytics = writer.readAnalytics();
 
     }
 
@@ -30,7 +41,7 @@ public class Account {
      */
     public LocalDateTime getStartDate(){
 
-        return null;
+        return startDate;
 
     }
 
@@ -40,7 +51,7 @@ public class Account {
      */
     public double getBalance(){
 
-        return 0.0;
+        return balance;
 
     }
 
@@ -50,7 +61,7 @@ public class Account {
      */
     public double getAllowance(){
 
-        return 0.0;
+        return allowance;
 
     }
 
@@ -60,7 +71,7 @@ public class Account {
      */
     public LocalDateTime getNext(){
 
-        return null;
+        return nextRollover;
 
     }
 
@@ -70,7 +81,7 @@ public class Account {
      */
     public LocalDateTime getPrev(){
 
-        return null;
+        return prevRollover;
 
     }
 
@@ -80,7 +91,8 @@ public class Account {
      */
     public String[] getAnalytics(){
 
-        return null;
+        String[] analyticsArray = {analytics.getReport(), analytics.getRec()};
+        return analyticsArray;
 
     }
 
@@ -90,7 +102,7 @@ public class Account {
      */
     public String getRec(){
 
-        return "";
+        return analytics.getRec();
 
     }
 
@@ -100,7 +112,7 @@ public class Account {
      */
     public boolean isRolloverAllowed(){
 
-        return false;
+        return rolloverAllowed;
 
     }
 
@@ -111,7 +123,13 @@ public class Account {
      */
     public boolean purchase(double amount) {
 
-        return false;
+        if (balance < amount) {
+            return false;
+        }
+
+        balance -= amount;
+        analytics.log(LogType.PURCHASE, LocalDateTime.now(), amount, allowance);
+        return true;
 
     }
 
@@ -121,7 +139,8 @@ public class Account {
      */
     public void addPayment(double amount) {
 
-
+        balance += amount;
+        analytics.log(LogType.PAYMENT, LocalDateTime.now(), amount, allowance);
 
     }
 
@@ -130,7 +149,20 @@ public class Account {
      */
     public void update(){
 
-
+        if(LocalDateTime.now().isAfter(nextRollover)){
+            double delta = LocalDateTime.now().toEpochSecond(ZoneOffset.ofHours(0)) - nextRollover.toEpochSecond(ZoneOffset.ofHours(0));
+            int deltaWeeks = (int) delta / 604800;
+            if(!rolloverAllowed){
+                balance = allowance;
+            }
+            else {
+                for (int ndx = 0; ndx < deltaWeeks; ) {
+                    balance += allowance;
+                }
+            }
+            prevRollover = prevRollover.plusWeeks(deltaWeeks);
+            nextRollover = nextRollover.plusWeeks(deltaWeeks);
+        }
 
     }
 
@@ -140,7 +172,7 @@ public class Account {
      */
     public void setBalance(double amount){
 
-
+        balance = amount;
 
     }
 
@@ -150,7 +182,7 @@ public class Account {
      */
     public void setAllowance(double amount){
 
-
+        allowance = amount;
 
     }
 
@@ -159,7 +191,7 @@ public class Account {
      */
     public void toggleRollover(){
 
-
+        rolloverAllowed = !rolloverAllowed;
 
     }
 
