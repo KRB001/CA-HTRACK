@@ -1,0 +1,12 @@
+Pitch 6/6
+Solid Pitch for Finance Tracking. Kinda like Mint. 
+Diagrams 28/32
+Use Case - Solid set of six use cases, usually in a UML diagram, the actors are pretty simple (child, adult, business ower) but you included a few extra that are defined by their motivations. This is good user-centered design but perhaps a bit too much information for a use case diagram. 
+Class - Solid
+Sequences - Very detailed flow of information. Make sure to include a title so that it is obvious what this sequence is showing. For example, why is the account constructor being called between the Writer and Analytics classes?  Also, I was looking for two different sequence diagrams for two different use cases. It is unclear from the diagram whether this is one long sequence or a few smaller sequences. 
+State - Good flow for the user interface.
+Code 31/22
+Wel commented with Javadocs
+Comprehensive Tests for multiple classes.
+AccountTest is technically an integration test because it calls different methods for the account class but a more comprehensive integration test might use the interactions across objects representing multiple classes. 
+Good Work 55/60
